@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet author="Aut" id="create tables">
+        <sql>
+
+            CREATE TABLE IF NOT EXISTS "camundawarehouse"."storeditem"(
+            "id"           bigint not null primary key,
+            "itemcode"     varchar(255) unique,
+            "name"         varchar(255),
+            "quantity"     numeric(38, 2)
+            );
+
+            CREATE TABLE IF NOT EXISTS "camundawarehouse"."status"(
+            "id"           bigint not null primary key,
+            "statuscode"   varchar(255) unique,
+            "statusname"   varchar(255)
+            );
+
+            CREATE TABLE IF NOT EXISTS "camundawarehouse"."order"(
+            "id"           bigint not null primary key,
+            "statuscode"   varchar(255),
+            "date"         timestamp,
+            "serviceid"    bigint
+            );
+
+            CREATE TABLE IF NOT EXISTS "camundawarehouse"."orderitem"(
+            "id"           bigint not null primary key,
+            "orderid"      bigint,
+            "itemcode"     varchar(255),
+            "quantity"     numeric(38, 2)
+            );
+
+            CREATE SEQUENCE IF NOT EXISTS "camundawarehouse"."hibernate_sequence" START WITH 11 INCREMENT BY 1 ;
+
+        </sql>
+        <rollback>
+
+        </rollback>
+        <comment>
+            Первичная инициализация таблиц
+        </comment>
+
+        <loadData file="db/changelog/release-1.0.0/initialize_data0.csv" tableName="storeditem"/>
+        <loadData file="db/changelog/release-1.0.0/initialize_data1.csv" tableName="status"/>
+    </changeSet>
+
+</databaseChangeLog>

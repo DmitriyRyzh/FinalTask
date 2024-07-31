@@ -1,0 +1,4 @@
+"id","statuscode","statusname"
+1,Assembled,Собран
+2,NotAssembled,Не собран
+3,New,Новый

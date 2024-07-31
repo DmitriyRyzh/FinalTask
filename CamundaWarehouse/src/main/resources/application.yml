@@ -1,0 +1,22 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: Spring-data
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: Dima
+    schema: camundawarehouse
+  hikari:
+    connectionTimeout: 20000
+    maximumPoolSize: 5
+    connection-init-sql: CREATE SCHEMA IF NOT EXISTS "camundawarehouse";
+    schema: camundawarehouse
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+    default-schema: camundawarehouse
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
