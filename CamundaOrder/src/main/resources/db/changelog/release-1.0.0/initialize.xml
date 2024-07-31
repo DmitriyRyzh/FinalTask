@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet author="Aut" id="create tables">
+        <sql>
+
+            CREATE TABLE IF NOT EXISTS "camundaorders"."status"(
+            "id"           bigint not null primary key,
+            "statuscode"   varchar(255) unique,
+            "statusname"   varchar(255)
+            );
+
+            CREATE TABLE IF NOT EXISTS "camundaorders"."order"(
+            "id"           bigint not null primary key,
+            "statuscode"   varchar(255),
+            "date"         timestamp,
+            "address"      varchar(255),
+            "clientname"   varchar(255)
+            );
+
+            CREATE TABLE IF NOT EXISTS "camundaorders"."item"(
+            "id"           bigint not null primary key,
+            "code"         varchar(255),
+            "quantity"     numeric(38, 2),
+            "orderid"      bigint
+            );
+
+            CREATE SEQUENCE IF NOT EXISTS hibernate_sequence START WITH 6 INCREMENT BY 1 ;
+
+        </sql>
+        <rollback>
+
+        </rollback>
+        <comment>
+            Первичная инициализация таблиц
+        </comment>
+
+        <loadData file="db/changelog/release-1.0.0/initialize_data1.csv" tableName="status"/>
+    </changeSet>
+
+</databaseChangeLog>

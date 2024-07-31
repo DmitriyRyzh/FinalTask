@@ -1,0 +1,11 @@
+"id","statuscode","statusname"
+1,New,Новый
+2,Assembled,Собран
+3,NotAssembled,Не собран
+4,TransferredToAssembling,Передан в сборку
+5,Delivered,Доставлен
+6,NotDelivered,Не доставлен
+7,Cancelled,Отменен
+8,NoItems,Нет товара
+9,Packaged,Упакован
+10,NotPackaged,Не упакован
