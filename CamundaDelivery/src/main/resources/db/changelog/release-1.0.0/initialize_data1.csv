@@ -1,0 +1,4 @@
+"id","statuscode","statusname"
+1,Delivered,Доставлен
+2,NotDelivered,Не доставлен
+3,New,Новый
