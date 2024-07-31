@@ -1,0 +1,34 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: Spring-service
+    microservice-warehouse:
+      url: http://localhost:8080/
+    microservice-packaging:
+      url: http://localhost:8083/
+    microservice-delivery:
+      url: http://localhost:8084/
+  datasource:
+    url: jdbc:h2:mem:example-simple;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+camunda:
+  bpm:
+    application:
+      delete-upon-undeploy: false
+      scan-for-process-definitions: false
+      deploy-changed-only: true
+      resume-previous-versions: true
+      resume-previous-by: a value
+    job-execution:
+      enabled: true
+    metrics:
+      enabled: false
+      db-reporter-activate: false
+    authorization:
+      enabled-for-custom-code: false
+      enabled: false
+    admin-user:
+      id: demo
+      password: demo
+      firstName: Demo
+camunda.bpm.auto-deployment-enabled: false
